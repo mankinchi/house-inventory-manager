@@ -58,18 +58,26 @@ export const updateItemQuantity = (item: Item, amount: number) => {
 	});
 };
 
-export const addItemToShoppingCart = (item: Item) => {
+const updateItemInShoppingCart = (item: Item, newState: boolean) => {
 	if (!item.id) return;
 
 	const dbRef = ref(db, "items");
 
 	const changes = {
-		[`${item.id}/inShoppingCart`]: true,
+		[`${item.id}/inShoppingCart`]: newState,
 	};
 
 	update(dbRef, changes).catch((e) => {
 		console.error(e);
 	});
+};
+
+export const addItemToShoppingCart = (item: Item) => {
+	updateItemInShoppingCart(item, true);
+};
+
+export const removeItemToShoppingCart = (item: Item) => {
+	updateItemInShoppingCart(item, false);
 };
 
 export const removeItem = (item: Item) => {
