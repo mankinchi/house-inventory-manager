@@ -32,8 +32,8 @@ export const Button = ({
 				type === ButtonType.PRIMARY &&
 					"bg-green-300 hover:bg-green-400",
 				type === ButtonType.ERROR && "bg-red-300 hover:bg-red-400",
-				type === ButtonType.INVERT &&
-					"border-green-300 bg-white hover:bg-green-300 hover:text-white",
+				type === ButtonType.INVERSE &&
+					"border-slate-300 bg-white hover:bg-green-400 hover:text-white",
 				disabled &&
 					"cursor-not-allowed bg-slate-300 hover:bg-slate-400",
 			)}
