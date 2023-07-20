@@ -14,7 +14,7 @@ function App() {
 				Household item tracker
 			</h1>
 			<div className="flex justify-center gap-1">
-				<div>
+				<div className="border border-solid border-black bg-white p-2">
 					<ExistingTable />
 				</div>
 				<div className="flex flex-col gap-2">
