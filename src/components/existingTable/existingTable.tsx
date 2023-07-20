@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { subscribeToItems } from "../../firebase/database";
+import { subscribeToItems } from "src/firebase/items";
 import { Item } from "../../types/item";
 import { ItemRow } from "./itemRow";
 
