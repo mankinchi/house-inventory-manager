@@ -12,6 +12,7 @@ export const QuickUpdateBtn = (props: Props) => {
 			text={
 				props.amount > 0 ? `+${props.amount}` : props.amount.toString()
 			}
+			smallPadding
 			type={props.amount >= 0 ? ButtonType.PRIMARY : ButtonType.ERROR}
 			onClick={() => {
 				props.onClick(props.amount);
