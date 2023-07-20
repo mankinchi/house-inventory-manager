@@ -14,3 +14,5 @@ export const login = async () => {
 		console.error(e);
 	}
 };
+
+export const getCurrentUser = () => auth.currentUser;

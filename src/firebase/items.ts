@@ -7,21 +7,28 @@ import {
 	update,
 } from "firebase/database";
 import type { Item } from "../types/item";
+import { getCurrentUser } from "./authentication";
 
 export const db = getDatabase();
 
 export const addItem = async (item: Partial<Item>) => {
+	const user = getCurrentUser();
+	if (!user) return;
+
 	if (!item.name || item.amount === undefined || !item.unit) return;
 
 	const db = getDatabase();
-	await push(ref(db, "items"), {
+	await push(ref(db, `items/${user.uid}`), {
 		...item,
 		inShoppingCart: false,
 	});
 };
 
 export const subscribeToItems = (cb: (value: Item[]) => void) => {
-	const dbRef = ref(db, "items");
+	const user = getCurrentUser();
+	if (!user) return;
+
+	const dbRef = ref(db, `items/${user.uid}`);
 
 	onValue(dbRef, (snapshot) => {
 		const data = snapshot.val() as {
@@ -44,10 +51,12 @@ export const subscribeToItems = (cb: (value: Item[]) => void) => {
 
 export const updateItemQuantity = (item: Item, amount: number) => {
 	if (!item.id) return;
+	const user = getCurrentUser();
+	if (!user) return;
 
 	if (item.amount + amount < 0) return;
 
-	const dbRef = ref(db, "items");
+	const dbRef = ref(db, `items/${user.uid}`);
 
 	const changes = {
 		[`${item.id}/amount`]: item.amount + amount,
@@ -61,7 +70,10 @@ export const updateItemQuantity = (item: Item, amount: number) => {
 const updateItemInShoppingCart = (item: Item, newState: boolean) => {
 	if (!item.id) return;
 
-	const dbRef = ref(db, "items");
+	const user = getCurrentUser();
+	if (!user) return;
+
+	const dbRef = ref(db, `items/${user.uid}`);
 
 	const changes = {
 		[`${item.id}/inShoppingCart`]: newState,
@@ -83,7 +95,10 @@ export const removeItemToShoppingCart = (item: Item) => {
 export const removeItem = (item: Item) => {
 	if (!item.id) return;
 
-	const dbRef = ref(db, `items/${item.id}`);
+	const user = getCurrentUser();
+	if (!user) return;
+
+	const dbRef = ref(db, `items/${user.uid}/${item.id}`);
 
 	remove(dbRef).catch((e) => {
 		console.error(e);

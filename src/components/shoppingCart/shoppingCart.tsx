@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DollarSign, X } from "react-feather";
+import { AppContext } from "src/appContext";
 import { Button } from "src/components/button";
 import { ButtonType } from "src/components/button/buttonTypes";
 import { removeItemToShoppingCart, subscribeToItems } from "src/firebase/items";
@@ -7,6 +8,8 @@ import { Item } from "src/types/item";
 import { ShoppingCartModal } from "./shoppingCartModal";
 
 export const ShoppingCart = () => {
+	const { user } = useContext(AppContext);
+
 	const [items, setItems] = useState<Item[]>([]);
 	const [selectedItem, setSelectedItem] = useState<Item>();
 	const [showModal, setShowModal] = useState(false);
@@ -27,7 +30,7 @@ export const ShoppingCart = () => {
 		subscribeToItems((items) => {
 			setItems(items);
 		});
-	}, []);
+	}, [user]);
 
 	return (
 		<div className="flex flex-col gap-2">

@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "src/appContext";
 import { subscribeToItems } from "src/firebase/items";
 import { fuse } from "src/fuse";
 import { Item } from "../../types/item";
@@ -6,6 +7,8 @@ import { ItemRow } from "./itemRow";
 import { SearchBox } from "./searchBox";
 
 export const ExistingTable = () => {
+	const { user } = useContext(AppContext);
+
 	const [items, setItems] = useState<Item[]>([]);
 	const [filteredItems, setFilteredItems] = useState<Item[]>([]);
 	const [searchValue, setSearchValue] = useState("");
@@ -14,7 +17,7 @@ export const ExistingTable = () => {
 		subscribeToItems((items) => {
 			setItems(items);
 		});
-	}, []);
+	}, [user]);
 
 	useEffect(() => {
 		fuse.setCollection(items);

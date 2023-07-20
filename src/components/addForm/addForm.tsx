@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "src/appContext";
 import { addItem } from "src/firebase/items";
 import { Button } from "../button";
 
 export const AddForm = () => {
+	const { user } = useContext(AppContext);
+
 	const [item, setItem] = useState("");
 	const [amount, setAmount] = useState(0);
 	const [unit, setUnit] = useState("");
@@ -50,6 +53,7 @@ export const AddForm = () => {
 
 			<Button
 				text="Add"
+				disabled={!user}
 				onClick={handleBtnSubmit}
 			/>
 		</div>
