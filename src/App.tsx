@@ -6,10 +6,13 @@ import "react-responsive-modal/styles.css";
 import { ExistingTable } from "./components/existingTable";
 import { AddForm } from "./components/addForm";
 import { ShoppingCart } from "./components/shoppingCart";
-import { auth, login } from "./firebase/authentication";
+import { auth, login, logout } from "./firebase/authentication";
 import { useEffect, useMemo, useState } from "react";
 import { AppContext } from "./appContext";
 import { User, onAuthStateChanged } from "firebase/auth";
+import { Button } from "./components/button";
+import { LogOut } from "react-feather";
+import { ButtonType } from "./components/button/buttonTypes";
 
 function App() {
 	const [user, setUser] = useState<User>();
@@ -26,6 +29,15 @@ function App() {
 			const user = await login();
 
 			setUser(user);
+		} catch (e) {
+			console.error(e);
+		}
+	};
+
+	const handleLogoutBtnClick = async () => {
+		try {
+			await logout();
+			setUser(undefined);
 		} catch (e) {
 			console.error(e);
 		}
@@ -70,6 +82,13 @@ function App() {
 								<div className="text-lg font-bold">
 									{user.displayName}
 								</div>
+								<Button
+									text={<LogOut />}
+									type={ButtonType.INVERSE}
+									smallPadding
+									// eslint-disable-next-line
+									onClick={handleLogoutBtnClick}
+								/>
 							</div>
 						)}
 					</div>

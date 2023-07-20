@@ -14,9 +14,13 @@ export const ExistingTable = () => {
 	const [searchValue, setSearchValue] = useState("");
 
 	useEffect(() => {
-		subscribeToItems((items) => {
-			setItems(items);
-		});
+		if (!user) {
+			setItems([]);
+		} else {
+			subscribeToItems((items) => {
+				setItems(items);
+			});
+		}
 	}, [user]);
 
 	useEffect(() => {

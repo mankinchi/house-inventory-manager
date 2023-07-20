@@ -15,4 +15,12 @@ export const login = async () => {
 	}
 };
 
+export const logout = async () => {
+	try {
+		await auth.signOut();
+	} catch (e) {
+		console.error(e);
+	}
+};
+
 export const getCurrentUser = () => auth.currentUser;

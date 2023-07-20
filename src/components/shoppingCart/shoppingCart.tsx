@@ -27,9 +27,13 @@ export const ShoppingCart = () => {
 	};
 
 	useEffect(() => {
-		subscribeToItems((items) => {
-			setItems(items);
-		});
+		if (!user) {
+			setItems([]);
+		} else {
+			subscribeToItems((items) => {
+				setItems(items);
+			});
+		}
 	}, [user]);
 
 	return (
