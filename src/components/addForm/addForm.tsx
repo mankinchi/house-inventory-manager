@@ -12,9 +12,15 @@ export const AddForm = () => {
 			name: item,
 			amount,
 			unit,
-		}).catch((e) => {
-			console.log(e);
-		});
+		})
+			.catch((e) => {
+				console.log(e);
+			})
+			.finally(() => {
+				setItem("");
+				setAmount(0);
+				setUnit("");
+			});
 	};
 
 	return (
