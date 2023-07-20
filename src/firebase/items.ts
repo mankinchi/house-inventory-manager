@@ -16,7 +16,7 @@ export const addItem = async (item: Partial<Item>) => {
 	const db = getDatabase();
 	await push(ref(db, "items"), {
 		...item,
-		inShoppingCart: true,
+		inShoppingCart: false,
 	});
 };
 
