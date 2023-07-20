@@ -1,6 +1,7 @@
 // organize-imports-ignore
 import "./firebase/app";
 import "./index.css";
+import "react-responsive-modal/styles.css";
 
 import { ExistingTable } from "./components/existingTable";
 import { AddForm } from "./components/addForm";

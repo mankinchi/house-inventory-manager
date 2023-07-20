@@ -6,7 +6,7 @@ interface Props {
 	type?: ButtonType;
 	smallPadding?: boolean;
 	disabled?: boolean;
-	onClick: () => void;
+	onClick?: () => void;
 }
 
 export const Button = ({
@@ -19,7 +19,9 @@ export const Button = ({
 	const handleClick = () => {
 		if (disabled) return;
 
-		onClick();
+		if (onClick) {
+			onClick();
+		}
 	};
 
 	return (
