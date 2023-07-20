@@ -10,9 +10,14 @@ import type { Item } from "../types/item";
 
 export const db = getDatabase();
 
-export const addItem = async (item: Item) => {
+export const addItem = async (item: Partial<Item>) => {
+	if (!item.name || item.amount === undefined || !item.unit) return;
+
 	const db = getDatabase();
-	await push(ref(db, "items"), item);
+	await push(ref(db, "items"), {
+		...item,
+		inShoppingCart: true,
+	});
 };
 
 export const subscribeToItems = (cb: (value: Item[]) => void) => {
@@ -46,6 +51,20 @@ export const updateItemQuantity = (item: Item, amount: number) => {
 
 	const changes = {
 		[`${item.id}/amount`]: item.amount + amount,
+	};
+
+	update(dbRef, changes).catch((e) => {
+		console.error(e);
+	});
+};
+
+export const addItemToShoppingCart = (item: Item) => {
+	if (!item.id) return;
+
+	const dbRef = ref(db, "items");
+
+	const changes = {
+		[`${item.id}/inShoppingCart`]: true,
 	};
 
 	update(dbRef, changes).catch((e) => {
