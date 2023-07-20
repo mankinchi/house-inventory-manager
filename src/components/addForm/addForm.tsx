@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addItem } from "../../firebase/database";
+import { addItem } from "src/firebase/items";
 import { Button } from "../button";
 
 export const AddForm = () => {
@@ -24,21 +24,21 @@ export const AddForm = () => {
 				type="text"
 				value={item}
 				placeholder="Name"
-				className="border border-solid border-black focus:outline-none px-2 py-1 rounded"
+				className="rounded border border-solid border-black px-2 py-1 focus:outline-none"
 				onChange={(e) => setItem(e.currentTarget.value)}
 			/>
 			<input
 				type="number"
 				value={amount}
 				placeholder="Amount"
-				className="border border-solid border-black focus:outline-none px-2 py-1 rounded"
+				className="rounded border border-solid border-black px-2 py-1 focus:outline-none"
 				onChange={(e) => setAmount(e.currentTarget.valueAsNumber)}
 			/>
 			<input
 				type="text"
 				value={unit}
 				placeholder="Unit"
-				className="border border-solid border-black focus:outline-none px-2 py-1 rounded"
+				className="rounded border border-solid border-black px-2 py-1 focus:outline-none"
 				onChange={(e) => setUnit(e.currentTarget.value)}
 			/>
 
