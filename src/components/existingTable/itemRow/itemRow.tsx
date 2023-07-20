@@ -1,8 +1,12 @@
 import { useState } from "react";
-import { Minus, Plus, Trash2 } from "react-feather";
+import { Minus, Plus, ShoppingCart, Trash2 } from "react-feather";
 import { Button } from "src/components/button";
 import { ButtonType } from "src/components/button/buttonTypes";
-import { removeItem, updateItemQuantity } from "src/firebase/database";
+import {
+	addItemToShoppingCart,
+	removeItem,
+	updateItemQuantity,
+} from "src/firebase/items";
 import { Item } from "src/types/item";
 import { QuickUpdateBtn } from "./quickUpdateBtn";
 
@@ -31,6 +35,10 @@ export const ItemRow = ({ item }: Props) => {
 		}
 	};
 
+	const handleAddToShoppingCartClick = () => {
+		addItemToShoppingCart(item);
+	};
+
 	return (
 		<tr className="border border-solid border-black">
 			<td className="p-2">{item.name}</td>
@@ -41,7 +49,7 @@ export const ItemRow = ({ item }: Props) => {
 				<div className="flex gap-1">
 					<input
 						type="number"
-						className="w-10 text-right px-2 py-1 border border-solid border-black rounded focus:outline-none"
+						className="w-10 rounded border border-solid border-black px-2 py-1 text-right focus:outline-none"
 						value={value}
 						onChange={(e) =>
 							setValue(e.currentTarget.valueAsNumber)
@@ -60,7 +68,7 @@ export const ItemRow = ({ item }: Props) => {
 					/>
 				</div>
 			</td>
-			<td className="px-4 py-2 flex gap-1 justify-center">
+			<td className="flex justify-center gap-1 px-4 py-2 ">
 				<QuickUpdateBtn
 					amount={1}
 					onClick={handleQuickUpdateBtnClick}
@@ -71,12 +79,20 @@ export const ItemRow = ({ item }: Props) => {
 				/>
 			</td>
 			<td className="px-2">
-				<Button
-					text={<Trash2 size={18} />}
-					smallPadding
-					type={ButtonType.ERROR}
-					onClick={handleRemoveBtnClick}
-				/>
+				<div className="flex gap-2">
+					<Button
+						text={<ShoppingCart size={18} />}
+						smallPadding
+						disabled={item.inShoppingCart}
+						onClick={handleAddToShoppingCartClick}
+					/>
+					<Button
+						text={<Trash2 size={18} />}
+						smallPadding
+						type={ButtonType.ERROR}
+						onClick={handleRemoveBtnClick}
+					/>
+				</div>
 			</td>
 		</tr>
 	);
