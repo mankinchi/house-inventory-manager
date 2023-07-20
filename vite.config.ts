@@ -5,5 +5,6 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 // https://vitejs.dev/config/
 export default defineConfig({
+	base: "https://mankinchi.github.io/house-inventory-manager",
 	plugins: [react(), eslint(), tsconfigPaths()],
 });
