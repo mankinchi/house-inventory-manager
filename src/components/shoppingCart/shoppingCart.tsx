@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Check, X } from "react-feather";
+import { DollarSign, X } from "react-feather";
 import { Button } from "src/components/button";
 import { ButtonType } from "src/components/button/buttonTypes";
 import { removeItemToShoppingCart, subscribeToItems } from "src/firebase/items";
@@ -59,7 +59,7 @@ export const ShoppingCart = () => {
 								<td className=" p-2">
 									<div className="flex gap-2">
 										<Button
-											text={<Check size={18} />}
+											text={<DollarSign size={18} />}
 											smallPadding
 											onClick={handleBuyBtnClick(item)}
 										/>
