@@ -37,7 +37,6 @@ function App() {
 	const handleLogoutBtnClick = async () => {
 		try {
 			await logout();
-			setUser(undefined);
 		} catch (e) {
 			console.error(e);
 		}
@@ -45,9 +44,7 @@ function App() {
 
 	useEffect(() => {
 		onAuthStateChanged(auth, (user) => {
-			if (user) {
-				setUser(user);
-			}
+			setUser(user ?? undefined);
 		});
 	}, []);
 
@@ -92,15 +89,15 @@ function App() {
 							</div>
 						)}
 					</div>
-					<div className="flex justify-center gap-1">
-						<div className="border border-solid border-black bg-white p-2">
+					<div className="flex flex-col justify-center gap-1 px-4 md:flex-row ">
+						<div className="order-1 border border-solid border-black bg-white p-2 md:order-none">
 							<ExistingTable />
 						</div>
 						<div className="flex flex-col gap-2">
-							<div className="rounded-r border border-solid border-black bg-white px-4 py-2">
+							<div className="order-1 rounded-r border border-solid border-black bg-white px-4 py-2 md:order-none">
 								<AddForm />
 							</div>
-							<div className="rounded-r border border-solid border-black bg-white px-4 py-2">
+							<div className="rounded-r border border-solid border-black bg-white px-4 py-2 ">
 								<ShoppingCart />
 							</div>
 						</div>
