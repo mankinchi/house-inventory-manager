@@ -1,4 +1,10 @@
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import {
+	GoogleAuthProvider,
+	getAuth,
+	signInWithPopup,
+	signInWithRedirect,
+} from "firebase/auth";
+import { isMobileDevice } from "src/utils/device";
 import { app } from "./app";
 
 export const auth = getAuth(app);
@@ -7,9 +13,13 @@ const provider = new GoogleAuthProvider();
 
 export const login = async () => {
 	try {
-		const result = await signInWithPopup(auth, provider);
+		if (isMobileDevice) {
+			await signInWithRedirect(auth, provider);
+		} else {
+			await signInWithPopup(auth, provider);
+		}
 
-		return result.user;
+		// return result.user;
 	} catch (e) {
 		console.error(e);
 	}

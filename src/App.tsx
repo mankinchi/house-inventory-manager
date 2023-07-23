@@ -26,9 +26,7 @@ function App() {
 
 	const handleLoginBtnClick = async () => {
 		try {
-			const user = await login();
-
-			setUser(user);
+			await login();
 		} catch (e) {
 			console.error(e);
 		}
