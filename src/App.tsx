@@ -89,7 +89,7 @@ function App() {
 						)}
 					</div>
 					<div className="flex w-full flex-col gap-2 p-2 md:p-10">
-						<div className="flex w-full flex-col justify-center gap-1 md:flex-row">
+						<div className="mx-auto flex w-full flex-col justify-center gap-1 md:w-3/4 md:flex-row">
 							<div className="order-1 flex-1 border border-solid border-black bg-white p-2 md:order-none">
 								<ExistingTable />
 							</div>
