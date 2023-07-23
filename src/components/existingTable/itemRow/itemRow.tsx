@@ -68,15 +68,17 @@ export const ItemRow = ({ item }: Props) => {
 					/>
 				</div>
 			</td>
-			<td className="flex justify-center gap-1 px-4 py-2 ">
-				<QuickUpdateBtn
-					amount={1}
-					onClick={handleQuickUpdateBtnClick}
-				/>
-				<QuickUpdateBtn
-					amount={-1}
-					onClick={handleQuickUpdateBtnClick}
-				/>
+			<td>
+				<div className="flex justify-center gap-1 px-4 py-2 ">
+					<QuickUpdateBtn
+						amount={1}
+						onClick={handleQuickUpdateBtnClick}
+					/>
+					<QuickUpdateBtn
+						amount={-1}
+						onClick={handleQuickUpdateBtnClick}
+					/>
+				</div>
 			</td>
 			<td className="px-2">
 				<div className="flex gap-2">

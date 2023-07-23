@@ -11,6 +11,7 @@ export const Changelog = () => {
 						changes={[
 							"Update login workflow to work on phone",
 							"Add changelog for tracking",
+							"Update minor styling",
 						]}
 					/>
 					<Version
