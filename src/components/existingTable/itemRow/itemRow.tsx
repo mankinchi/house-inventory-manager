@@ -41,12 +41,12 @@ export const ItemRow = ({ item }: Props) => {
 
 	return (
 		<tr className="border border-solid border-black">
-			<td className="p-2">{item.name}</td>
-			<td className="p-2">
+			<td className="whitespace-nowrap p-2">{item.name}</td>
+			<td className="whitespace-nowrap p-2">
 				{item.amount} {item.unit}
 			</td>
 			<td className="px-4 py-2">
-				<div className="flex gap-1">
+				<div className="flex items-center gap-1">
 					<input
 						type="number"
 						className="w-10 rounded border border-solid border-black px-2 py-1 text-right focus:outline-none"

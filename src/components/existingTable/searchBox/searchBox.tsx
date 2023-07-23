@@ -11,11 +11,11 @@ export const SearchBox = (props: Props) => {
 	};
 
 	return (
-		<div className="flex items-center gap-1 border border-solid border-black p-2">
+		<div className="flex w-full items-center gap-1 border border-solid border-black p-2 md:w-auto">
 			<Search size={16} />
 			<input
 				type="text"
-				className="focus:outline-none"
+				className="flex-grow focus:outline-none"
 				placeholder="Search"
 				value={props.value}
 				onChange={(e) => {

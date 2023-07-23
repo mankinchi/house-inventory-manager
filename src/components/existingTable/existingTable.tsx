@@ -52,35 +52,37 @@ export const ExistingTable = () => {
 					setValue={setSearchValue}
 				/>
 			</div>
-			<table className="table-fixed border-collapse bg-white">
-				<thead>
-					<tr>
-						<th className="w-40 border border-solid border-black">
-							Name
-						</th>
-						<th className="w-32 border border-solid border-black">
-							Amount
-						</th>
-						<th className="border border-solid border-black">
-							Update
-						</th>
-						<th className="border border-solid border-black">
-							Quick Update
-						</th>
-						<th className="w-20 border border-solid border-black">
-							Actions
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					{filteredItems.map((item) => (
-						<ItemRow
-							key={item.id}
-							item={item}
-						/>
-					))}
-				</tbody>
-			</table>
+			<div className="overflow-auto">
+				<table className="w-full border-collapse bg-white">
+					<thead>
+						<tr>
+							<th className="w-40 border border-solid border-black">
+								Name
+							</th>
+							<th className="border border-solid border-black">
+								Amount
+							</th>
+							<th className="border border-solid border-black">
+								Update
+							</th>
+							<th className="border border-solid border-black">
+								Quick Update
+							</th>
+							<th className="border border-solid border-black">
+								Actions
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{filteredItems.map((item) => (
+							<ItemRow
+								key={item.id}
+								item={item}
+							/>
+						))}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	);
 };
