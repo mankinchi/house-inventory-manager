@@ -1,3 +1,3 @@
-export const isMobileDevice = /android|iphone|kindle|ipad/i.test(
-	navigator.userAgent,
-);
+export const isMobileDevice = () => {
+	return /android|iphone|kindle|ipad/i.test(navigator.userAgent);
+};

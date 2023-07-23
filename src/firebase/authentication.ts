@@ -13,13 +13,11 @@ const provider = new GoogleAuthProvider();
 
 export const login = async () => {
 	try {
-		if (isMobileDevice) {
+		if (isMobileDevice()) {
 			await signInWithRedirect(auth, provider);
 		} else {
 			await signInWithPopup(auth, provider);
 		}
-
-		// return result.user;
 	} catch (e) {
 		console.error(e);
 	}
