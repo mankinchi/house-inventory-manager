@@ -13,6 +13,7 @@ import { User, onAuthStateChanged } from "firebase/auth";
 import { Button } from "./components/button";
 import { LogOut } from "react-feather";
 import { ButtonType } from "./components/button/buttonTypes";
+import { Changelog } from "./components/changelog";
 
 function App() {
 	const [user, setUser] = useState<User>();
@@ -87,17 +88,22 @@ function App() {
 							</div>
 						)}
 					</div>
-					<div className="flex flex-col justify-center gap-1 px-4 md:flex-row ">
-						<div className="order-1 border border-solid border-black bg-white p-2 md:order-none">
-							<ExistingTable />
+					<div className="flex w-full flex-col gap-2 p-2 md:p-10">
+						<div className="flex w-full flex-col justify-center gap-1 md:flex-row">
+							<div className="order-1 flex-1 border border-solid border-black bg-white p-2 md:order-none">
+								<ExistingTable />
+							</div>
+							<div className="flex flex-col gap-2">
+								<div className="order-1 rounded-r border border-solid border-black bg-white px-4 py-2 md:order-none">
+									<AddForm />
+								</div>
+								<div className="rounded-r border border-solid border-black bg-white px-4 py-2 ">
+									<ShoppingCart />
+								</div>
+							</div>
 						</div>
-						<div className="flex flex-col gap-2">
-							<div className="order-1 rounded-r border border-solid border-black bg-white px-4 py-2 md:order-none">
-								<AddForm />
-							</div>
-							<div className="rounded-r border border-solid border-black bg-white px-4 py-2 ">
-								<ShoppingCart />
-							</div>
+						<div className="mx-auto w-full border border-solid border-black bg-white p-4 md:w-1/2">
+							<Changelog />
 						</div>
 					</div>
 				</div>
